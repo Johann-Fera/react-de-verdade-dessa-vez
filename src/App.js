@@ -76,17 +76,20 @@ function Forms() {
     </form>
   ); 
 }
-//NÃO FUNCIONA
 function ContaMudanca() {
   const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(0);
   
   useEffect(() => {
-    setCount(() => counter);
-  }, [counter]); 
+    setCounter(() => count);
+  }, [count]); 
 
   return (
     <div>
-      <p>Counter: {counter}</p>
+      <h2>usando effect: {counter}</h2>
+      <input type='text' onChange={(e) => {
+        setCount(count + 1);
+        }}/>
     </div>
   );
 }
