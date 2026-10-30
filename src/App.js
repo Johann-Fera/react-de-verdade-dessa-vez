@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from "react";
 
 const algo = "jsx"
+let counter = 0;
 function App() {
   return (
     <main>
@@ -16,6 +18,9 @@ function App() {
       </ul>
       <Mensagem_restrita permissao="tem"/>
       <Mensagem_restrita/>
+      <Inputstate/>
+      <Forms/>
+      <ContaMudanca/>
     </main>
   );
 }
@@ -41,6 +46,48 @@ function Mensagem_restrita({permissao}) {
     );
   } else return (
     <p>posso ver a mensagem? não D: , não passei da condicional</p>
+  );
+}
+
+function Inputstate() {
+  const [state, setState] = useState("nada");
+
+  return (
+    <div>
+      <h2>usando state: {state}</h2>
+      <input type='text' onChange={(e) => {
+        counter += 1;
+        setState(e.target.value);
+        }}/>
+    </div>
+  );
+}
+//formulario?
+function Forms() {
+  function enviar(e) {
+    e.preventDefault();
+    alert("Formulário enviado!");
+  }
+
+  return (
+    <form onSubmit={enviar}>
+      <p>envia forms</p>
+      <button type="submit">Enviar</button>
+    </form>
+  ); 
+}
+//NÃO FUNCIONA
+function ContaMudanca() {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    setCount(() => counter);
+  }, [counter]); 
+
+  return (
+    <div>
+      <p>Counter: {counter}</p>
+    </div>
   );
 }
 
