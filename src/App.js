@@ -21,6 +21,7 @@ function App() {
       <Inputstate/>
       <Forms/>
       <ContaMudanca/>
+      <Uso_API/>
     </main>
   );
 }
@@ -62,7 +63,7 @@ function Inputstate() {
     </div>
   );
 }
-//formulario?
+
 function Forms() {
   function enviar(e) {
     e.preventDefault();
@@ -76,6 +77,7 @@ function Forms() {
     </form>
   ); 
 }
+
 function ContaMudanca() {
   const [count, setCount] = useState(0);
   const [counter, setCounter] = useState(0);
@@ -90,6 +92,26 @@ function ContaMudanca() {
       <input type='text' onChange={(e) => {
         setCount(count + 1);
         }}/>
+    </div>
+  );
+}
+//de alguma forma ele está sendo chamado duas vezes
+function Uso_API() {
+  const [txt, setTxt] = useState("nada");
+  
+  
+  useEffect(() => {
+    async function carregar() {
+    const resposta = await fetch("https://v2.jokeapi.dev/joke/Any?type=single");
+    const dados = await resposta.json();
+    setTxt(dados.joke);
+    }
+    carregar();
+  }, []);
+
+  return (
+    <div>
+      <h5>usando api: {txt}</h5>
     </div>
   );
 }
