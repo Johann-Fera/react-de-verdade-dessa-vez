@@ -1,28 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 const algo = "jsx"
 let counter = 0;
 function App() {
   return (
-    <main>
-      <h3>coisa escrita com jsx ---{">"} {algo}</h3>
-      <Componente/>
-      <Componente_com_prop coisa="(isso é um prop)"/>
-      <a href='https://github.com/Johann-Fera/react-de-verdade-dessa-vez' target="_blank">ta no repositório o mermaid de virtualDOM</a>
-      <ul>
-        {coisas.map((algum) => (
-        <li key={algum}>{algum}</li>
-        ))}
-      </ul>
-      <Mensagem_restrita permissao="tem"/>
-      <Mensagem_restrita/>
-      <Inputstate/>
-      <Forms/>
-      <ContaMudanca/>
-      <Uso_API/>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<First_half/>} />
+        <Route path="/2" element={<Second_half/>} />
+      </Routes>
+      <div className='Link'>
+        <Link to="/">primeiros 6 conceitos</Link>
+        <Link to="/2">5 últimos conceitos</Link>
+      </div>  
+    </BrowserRouter>
   );
 }
 
@@ -114,6 +108,38 @@ function Uso_API() {
       <h5>usando api: {txt}</h5>
     </div>
   );
+}
+
+function First_half() {
+
+  return (
+    <main>
+      <h3>coisa escrita com jsx ---{">"} {algo}</h3>
+      <Componente/>
+      <Componente_com_prop coisa="(isso é um prop)"/>
+      <a href='https://github.com/Johann-Fera/react-de-verdade-dessa-vez' target="_blank">ta no repositório o mermaid de virtualDOM</a>
+      <ul>
+        {coisas.map((algum) => (
+        <li key={algum}>{algum}</li>
+        ))}
+      </ul>
+      <Mensagem_restrita permissao="tem"/>
+      <Mensagem_restrita/>
+    </main>
+  );
+}
+
+function Second_half() {
+
+  return(
+    <main>
+      <Inputstate/>
+      <Forms/>
+      <ContaMudanca/>
+      <Uso_API/>
+    </main>
+  )
+  
 }
 
 export default App;

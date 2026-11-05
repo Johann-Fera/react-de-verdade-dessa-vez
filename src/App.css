@@ -9,3 +9,11 @@ div div{
   padding: 3vh;
   border: solid gray 1vh;
 }
+.Link{
+  border: none;
+  display: flex;
+  gap: 3vw;
+}
+body{
+  margin: 3vh;
+}
